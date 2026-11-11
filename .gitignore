@@ -10,5 +10,6 @@ __pycache__/
 .pytest_cache/
 .idea/
 .DS_Store
-# Resultados locales nuevos (no quita archivos ya versionados)
-minecraft_biomas/resultados/
+# Salidas personales; conservar la carpeta en Git mediante un marcador
+/OutPut/*
+!/OutPut/.gitkeep

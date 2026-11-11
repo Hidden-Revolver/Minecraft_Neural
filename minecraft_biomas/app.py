@@ -14,6 +14,7 @@ from plots import curves, confusion
 from architectures import ORIGINAL, PRESETS, validate_architecture
 
 BASE=Path(__file__).resolve().parent
+OUTPUT=BASE.parent/'OutPut'
 
 class App(tk.Tk):
     def __init__(self):
@@ -316,7 +317,7 @@ class App(tk.Tk):
         except Exception as exc: return messagebox.showerror('Configuración',str(exc))
         self.history=[]; self.progress['value']=0
         self.append_log('Nuevo entrenamiento desde cero. El test no se consulta hasta terminar.')
-        self.launch(lambda:train(entries,cfg,BASE/'resultados',lambda k,v:self.events.put((k,v)),self.cancel),'trained')
+        self.launch(lambda:train(entries,cfg,OUTPUT,lambda k,v:self.events.put((k,v)),self.cancel),'trained')
     def load_model(self):
         path=filedialog.askopenfilename(filetypes=[('Modelo PyTorch','*.pth *.pt')])
         if path:self.launch(lambda:{'checkpoint':load_checkpoint(path),'path':path},'loaded')
@@ -358,7 +359,8 @@ class App(tk.Tk):
         self.status.set('Imagen clasificada. Distribución softmax sobre los biomas del modelo.')
     def export_plots(self):
         if not self.active:return messagebox.showinfo('Resultados','Primero carga o entrena un modelo.')
-        path=filedialog.askdirectory(title='Destino de las gráficas')
+        OUTPUT.mkdir(parents=True,exist_ok=True)
+        path=filedialog.askdirectory(title='Destino de las gráficas',initialdir=str(OUTPUT))
         if not path:return
         try:
             cp=self.active['checkpoint']; dest=Path(path)
