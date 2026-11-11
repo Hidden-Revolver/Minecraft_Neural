@@ -48,9 +48,9 @@ un profesor). No necesita copiar archivos ni entornos virtuales de otro ordenado
 Una vez clonado, en la terminal de PyCharm (situada **en la raíz del proyecto**)
 comprueba que Git LFS ha terminado de descargar los modelos:
 
-``powershell
+```powershell
 git lfs pull
-``
+```
 
 Si prefieres **entrenar desde cero** y no necesitas cargar los modelos históricos,
 puedes omitir `git lfs pull`; para cargar uno de esos `.pth` más adelante sí
@@ -62,15 +62,15 @@ LFS, **no** un modelo cargable.
 Abre **Terminal** dentro de PyCharm. Debes ver una ruta terminada en
 `Minecraft_Neural>`. Comprueba Python:
 
-``powershell
+```powershell
 py -3.12 --version
-``
+```
 
 Después ejecuta **desde la raíz**, donde están `README.md` y `setup.py`:
 
-``powershell
+```powershell
 py -3.12 setup.py
-``
+```
 
 La primera ejecución descarga y comprueba el dataset público, crea `.venv`,
 instala PyTorch/torchvision y las dependencias de `minecraft_biomas/requirements.txt`,
@@ -80,17 +80,17 @@ de varios GB; las ejecuciones posteriores reutilizan el entorno y los datos.
 
 Si quieres forzar CPU aunque tengas NVIDIA:
 
-``powershell
+```powershell
 py -3.12 setup.py --cpu
-``
+```
 
 Si el dataset no se puede descargar de Kaggle, consulta la sección
 [Dataset reproducible](#dataset-reproducible): puedes descargarlo desde la web
 e importarlo con `--dataset-source`. Para abrir la app sin descargar datos:
 
-``powershell
+```powershell
 py -3.12 setup.py --skip-dataset
-``
+```
 
 > `setup.py` es un **instalador y lanzador**, no un paquete setuptools:
 > no uses `pip install .`.
@@ -101,9 +101,9 @@ Cuando termine el instalador, ve a **Settings → Project → Python Interpreter
 elige **Add Interpreter → Add Local Interpreter → Existing** (el texto puede variar
 entre versiones de PyCharm) y selecciona el Python ya creado:
 
-``text
+```text
 <carpeta del repositorio>\.venv\Scripts\python.exe
-``
+```
 
 **No** selecciones el Python global ni crees otro `venv`: `.venv` es el entorno
 utilizado por `setup.py`. Para reabrir la aplicación más adelante, usa de nuevo
@@ -128,10 +128,10 @@ Para el resto de opciones consulta el [Manual de uso](docs/USO.md).
 
 Si quieres comprobar además el código con los tests:
 
-``powershell
+```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
 .\.venv\Scripts\python.exe -m pytest tests -q
-``
+```
 
 ### 6. Si algo falla
 
