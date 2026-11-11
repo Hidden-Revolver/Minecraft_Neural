@@ -80,18 +80,42 @@ class DatasetTests(unittest.TestCase):
         self.assertTrue(archive.exists())
 
     def test_zip_traversal_absolute_windows_and_symlink_rejected(self):
-        for name in ['../escape', '/absolute', 'C:/escape', 'folder\\escape']:
-            archive = self.root / 'bad.zip'
-            with zipfile.ZipFile(archive, 'w') as z:
-                z.writestr(name, b'bad')
-            with self.assertRaises(DatasetError):
-                extract_archive(archive, self.root / 'extract')
+        archive = self.root / 'bad.zip'
+        for name in ['../escape', '/absolute', 'C:/escape', 'folder\\escape', 'safe\x00hidden']:
+            with self.subTest(name=name):
+                # Pasar un string a writestr normaliza las barras en Windows.
+                # Asignar filename después del constructor conserva el ZIP hostil.
+                info = zipfile.ZipInfo('placeholder')
+                info.filename = name
+                with zipfile.ZipFile(archive, 'w') as z:
+                    z.writestr(info, b'bad')
+                with zipfile.ZipFile(archive) as z:
+                    self.assertEqual(z.infolist()[0].orig_filename, name)
+                with self.assertRaises(DatasetError):
+                    extract_archive(archive, self.root / 'extract')
+                self.assertFalse((self.root / 'extract').exists())
         with zipfile.ZipFile(archive, 'w') as z:
             info = zipfile.ZipInfo('link')
             info.external_attr = (stat.S_IFLNK | 0o777) << 16
             z.writestr(info, '../escape')
         with self.assertRaises(DatasetError):
             extract_archive(archive, self.root / 'extract')
+        self.assertFalse((self.root / 'extract').exists())
+
+    def test_raw_backslash_is_rejected_after_windows_normalization(self):
+        archive = self.root / 'windows.zip'
+        info = zipfile.ZipInfo('placeholder')
+        info.filename = 'folder\\escape'
+        with zipfile.ZipFile(archive, 'w') as z:
+            z.writestr(info, b'bad')
+        # Reproduce el comportamiento de ZipInfo en Windows también en Linux.
+        with patch.object(zipfile.os, 'sep', '\\'):
+            with zipfile.ZipFile(archive) as z:
+                entry = z.infolist()[0]
+                self.assertEqual(entry.filename, 'folder/escape')
+                self.assertEqual(entry.orig_filename, 'folder\\escape')
+            with self.assertRaises(DatasetError):
+                extract_archive(archive, self.root / 'extract')
         self.assertFalse((self.root / 'extract').exists())
 
     def test_download_failure_cleans_staging(self):
