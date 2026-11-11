@@ -1,0 +1,14 @@
+# Entornos virtuales y archivos generados
+.venv/
+venv/
+venv*/
+**/venv/
+**/venv*/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.DS_Store
+# Resultados locales nuevos (no quita archivos ya versionados)
+minecraft_biomas/resultados/
