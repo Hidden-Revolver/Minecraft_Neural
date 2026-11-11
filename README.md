@@ -1,65 +1,118 @@
-# Minecraft Neural — instalación automática
+# Minecraft Neural
 
-Aplicación local de clasificación de biomas de Minecraft usando **PyTorch** y **Tkinter**. El entrenamiento utiliza la CPU o, si hay una NVIDIA compatible, CUDA de manera nativa. No es una aplicación web.
+Aplicación de escritorio para clasificar biomas de Minecraft con Python,
+Tkinter y PyTorch. Entrena en el ordenador del usuario con CPU o CUDA NVIDIA;
+permite configurar arquitecturas JSON, comparar métricas y guardar modelos.
 
-## Requisitos previos
+## Empezar en Windows
 
-- Python **3.12 de 64 bits** (también se admiten 3.11 y 3.13), con pip y Tkinter. En Windows, instálalo desde python.org.
-- Acceso a Internet durante la primera instalación.
-- Para entrenar con CUDA, una GPU NVIDIA y sus controladores actualizados. No necesitas instalar por separado el CUDA Toolkit.
-- El instalador automatiza los paquetes Python; **no** instala Python, drivers de NVIDIA, Tkinter del sistema ni descarga datasets.
+Requisitos: Python **3.12 de 64 bits** (también 3.11–3.13), pip y Tkinter.
+Para CUDA necesitas una GPU NVIDIA y su controlador actualizado. No hace falta
+instalar el CUDA Toolkit por separado. Python, Tkinter del sistema y el driver
+se instalan manualmente; el resto lo prepara el instalador.
 
-## Instalación y ejecución (Windows PowerShell)
-
-Abre PowerShell desde la **raíz del repositorio**, no desde la subcarpeta `minecraft_biomas`:
+Desde la raíz del repositorio:
 
 ```powershell
 py -3.12 setup.py
 ```
 
-La primera ejecución creará `.venv`, descargará las dependencias, comprobará PyTorch y abrirá la interfaz. Las siguientes ejecuciones reutilizarán el entorno si las dependencias siguen correctas. El tamaño de la descarga inicial puede ser de varios GB.
+La primera vez prepara el dataset, crea `.venv`, instala las dependencias,
+verifica PyTorch y abre la aplicación. La descarga total puede ser de varios GB.
+Las siguientes ejecuciones verifican y reutilizan los datos y el entorno.
+El dataset necesita al menos 1 GiB libre durante su preparación.
 
-En Linux o macOS, utiliza `python3 setup.py` con una versión compatible de Python. En Fedora, si falta Tkinter, instala antes `python3-tkinter`.
+En **Explorar carpeta raíz…** se propone el dataset ya preparado. Marca entre
+5 y 10 biomas y configura el entrenamiento. Para usar una red ya entrenada,
+pulsa **Cargar modelo / resultados…** y selecciona un `.pth` en
+`minecraft_biomas/resultados/`.
 
-## Opciones
+En Linux/macOS usa `python3 setup.py`. En Fedora, Tkinter requiere
+`sudo dnf install python3-tkinter`; en Ubuntu/Debian, `sudo apt install python3-tk`.
+En macOS la aplicación usa CPU. CUDA requiere Windows o Linux y NVIDIA.
+
+## Opciones del instalador
+
+| Opción tras `py -3.12 setup.py` | Uso |
+| --- | --- |
+| `--cpu` | Instalar y ejecutar con PyTorch CPU. |
+| `--cuda` | Exigir CUDA; informar si no está disponible. |
+| `--install-only` | Preparar datos y dependencias sin abrir la ventana. |
+| `--dataset-only` | Preparar solo los datos, sin PyTorch ni interfaz. |
+| `--dataset-source "C:/Descargas/minecraft-biomes.zip"` | Importar un ZIP local en lugar de descargarlo. |
+| `--dataset-source "C:/Datos/preprocessed_data"` | Copiar y renombrar una carpeta local, conservando el origen. |
+| `--skip-dataset` | Trabajar con otros datos o solo cargar modelos, sin preparar el dataset. |
+| `--reinstall` | Reinstalar dependencias en `.venv`. |
+
+Se pueden combinar opciones, por ejemplo `--dataset-only --dataset-source RUTA`.
+Si instalas con `--cpu`, úsalo de nuevo al abrir para mantener esa distribución.
+
+## Dataset reproducible
+
+Fuente: [Minecraft Biomes de Willow C en Kaggle](https://www.kaggle.com/datasets/willowc/minecraft-biomes),
+versión 1, licencia CC0. Contiene **22.169 imágenes y 41 biomas**.
+La descarga pública se ha probado sin credenciales. Si Kaggle rechaza la descarga,
+puedes obtener el ZIP desde su web e importarlo con `--dataset-source`.
+
+El instalador transforma `preprocessed_data/biome_ID` en
+`minecraft_biomas/minecraft_biomas/nombre_del_bioma`, conservando exactamente los
+nombres publicados anteriormente, incluido `Plains`. No cambia las imágenes ni
+sus nombres de archivo. La correspondencia, recuentos y huellas SHA-256 están en
+[`scripts/dataset_manifest.json`](scripts/dataset_manifest.json).
+
+La preparación se hace en una carpeta temporal y se valida antes de colocar el
+resultado en su destino. Si hay un dataset existente incompleto o modificado,
+**no se sobrescribe ni se borra**: muévelo a otra carpeta para regenerarlo, o usa
+`--skip-dataset` para seguir trabajando con él. La misma opción permite abrir la
+app sin conexión cuando se usan datos propios.
+
+## Documentación y estructura
+
+- [Manual de uso](docs/USO.md): datos, entrenamiento, validación, gráficas y predicción.
+- [Arquitecturas JSON](docs/ARQUITECTURAS.md): formato de capas y ejemplos.
+- `setup.py`: entrada única para instalar y ejecutar.
+- `scripts/`: preparación del dataset, sin dependencias de PyTorch.
+- `minecraft_biomas/app.py`: interfaz; `core.py`: datos y entrenamiento;
+  `architectures.py`: construcción de redes; `plots.py`: gráficas.
+- `tests/`: pruebas de datos, arquitecturas, entrenamiento e instalador.
+- `minecraft_biomas/resultados/`: experimentos históricos publicados para ver
+  la evolución y cargar redes entrenadas. `archivo_OutPut/` conserva las salidas antiguas.
+- `OutPut/`: nuevos entrenamientos y destino inicial para exportar gráficas;
+  Git solo guarda `.gitkeep`. El resto son archivos personales ignorados.
+- `.venv/` y `minecraft_biomas/minecraft_biomas/`: dependencias y datos locales,
+  generados por el instalador y excluidos de Git.
+
+`setup.py` es un instalador/lanzador, no un archivo de empaquetado setuptools.
+No se instala el proyecto con `pip install .`.
+
+## Desarrollo y pruebas
 
 ```powershell
-py -3.12 setup.py --install-only  # Preparar y comprobar sin abrir
-py -3.12 setup.py --cuda          # Exigir CUDA; fallar si no funciona
-py -3.12 setup.py --cpu           # Forzar una instalación CPU
-py -3.12 setup.py --reinstall     # Reparar/reinstalar dependencias
+py -3.12 setup.py --cpu --skip-dataset --install-only
+.\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
+.\.venv\Scripts\python.exe -m pytest tests -q
 ```
 
-Si instalas con `--cpu`, usa de nuevo `--cpu` para abrir la aplicación sin reemplazar la distribución de PyTorch. Para cambiar entre CPU y CUDA, el instalador reinstalará PyTorch cuando sea necesario.
+En Linux sustituye `.\.venv\Scripts\python.exe` por `.venv/bin/python`.
+Se utiliza `pytest` porque recoge tanto las pruebas `unittest` como las funciones
+de prueba de arquitecturas. Las pruebas sintéticas de CPU no miden precisión
+sobre Minecraft ni validan el rendimiento CUDA. Las pruebas del importador son
+offline; la descarga completa se comprueba aparte con `--dataset-only`.
 
-Para ejecutar pruebas tras instalar:
+## Actualizar una copia existente
 
-```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s .\minecraft_biomas\tests -v
-```
+Antes del primer `git pull` que retire los datos de Git, copia fuera del repositorio
+tu dataset, `OutPut` y cualquier configuración local que quieras conservar:
+Git puede eliminar archivos que antes estaban versionados. Después puedes importar
+la copia con `--dataset-source` y devolver tus salidas personales a `OutPut`.
+Los modelos históricos siguen publicados. Las selecciones antiguas con rutas
+absolutas de otro ordenador requieren volver a elegir las carpetas desde la app.
 
-Puedes consultar el [manual original](minecraft_biomas/README.md) para conocer los controles de entrenamiento, las arquitecturas JSON y cómo cargar o guardar modelos.
+Para descargar los modelos e imágenes históricos almacenados con Git LFS, usa
+Git LFS al clonar y ejecuta `git lfs pull`. Si un `.pth` es solo un pequeño puntero
+de texto, todavía no se ha descargado el modelo. El ZIP de código de GitHub puede
+contener esos punteros dependiendo de la configuración del repositorio.
 
-### Importante
+Eliminar datos del árbol actual no borra los commits antiguos: reducir el tamaño
+del historial requeriría una operación separada con copias de seguridad.
 
-Los modelos, imágenes, arquitecturas y resultados que ya tengas no se borran. El entorno nuevo `.venv` se guarda en la raíz y no modifica el `venv312` anterior. Los entornos virtuales no deben subirse al repositorio.
-
-Si falla la verificación de CUDA, actualiza el driver de NVIDIA o prueba `--cpu`. Las distribuciones oficiales utilizadas son `torch==2.10.0` y `torchvision==0.25.0`, con índice CUDA 12.6 o 12.8 según el controlador. No está comprobado todavía en Windows con la GPU del autor.
-
-## Datos, resultados históricos y salidas personales
-
-- `minecraft_biomas/minecraft_biomas/`: el dataset se conserva con sus nombres actuales. Este instalador todavía no descarga ni renombra el dataset.
-- `minecraft_biomas/resultados/`: entrenamientos históricos versionados para mostrar la evolución y cargar una red entrenada.
-- `minecraft_biomas/resultados/archivo_OutPut/`: copia íntegra del antiguo OutPut, incluida la selección, el mejor modelo y las gráficas. Las rutas de la selección son las del ordenador original; en otro equipo hay que volver a elegir las carpetas.
-- `OutPut/`: nuevos entrenamientos y destino inicial al exportar gráficas. Su contenido es local y se ignora en Git; solo se versiona `.gitkeep`, porque Git no guarda carpetas vacías.
-- `venv312`, `__pycache__` y `.idea` dejan de estar versionados. El setup crea el entorno `.venv`.
-
-### Actualizar una copia existente
-
-Antes de fusionar esta limpieza y hacer `git pull`, copia fuera del repositorio tu
-`OutPut` y cualquier configuración de `.idea` que quieras conservar.
-Git puede eliminar los archivos previamente versionados al aplicar la limpieza.
-El OutPut publicado queda archivado en resultados; los archivos personales que
-solo existan en tu ordenador deben copiarse antes. Tras actualizar, puedes devolver
-tus salidas a `OutPut`. Ejecuta `py -3.12 setup.py` para usar el nuevo entorno.
-No se reescribe el historial: los commits anteriores siguen ocupando espacio.

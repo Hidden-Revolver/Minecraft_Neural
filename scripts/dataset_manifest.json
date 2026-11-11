@@ -1,0 +1,217 @@
+{
+  "dataset": "willowc/minecraft-biomes",
+  "version": 1,
+  "url": "https://www.kaggle.com/api/v1/datasets/download/willowc/minecraft-biomes?datasetVersionNumber=1",
+  "source_page": "https://www.kaggle.com/datasets/willowc/minecraft-biomes",
+  "license": "CC0-1.0",
+  "archive_sha256": "ba3e8fbcd88afca0b115a7ff974352c99e873ca696e3cc6400d51b671821dcee",
+  "files": 22169,
+  "uncompressed_bytes": 217167550,
+  "classes": {
+    "1": {
+      "name": "Plains",
+      "files": 3012,
+      "sha256": "75cc7b45351235f1341fe3a7bd2caf7e78352e1a7e5827fd25e1960cb053f199"
+    },
+    "2": {
+      "name": "desert",
+      "files": 1530,
+      "sha256": "ed1a53560bffb439419fb96b8c5f513f5522b1b8cd46c22ce382cb76763ab33c"
+    },
+    "3": {
+      "name": "mountains",
+      "files": 2466,
+      "sha256": "91860ef26012cd7488c0cc0afd01b4673398aafb7ae2f70a53d5e12fd5811ea1"
+    },
+    "4": {
+      "name": "forest",
+      "files": 2724,
+      "sha256": "a1d0dacc2bf9ac48e62a7879890b443e0fc248b41635a5bb36c8c09c4b003bf2"
+    },
+    "5": {
+      "name": "taiga",
+      "files": 1596,
+      "sha256": "085085b6540d5550ab8d59054d013064ae57cf84c43baceb7837086090f4c839"
+    },
+    "6": {
+      "name": "swamp",
+      "files": 665,
+      "sha256": "54db082b4aac62c60061adc6259ad508173fa5cc757bfa49e580ae1dd1c9042e"
+    },
+    "7": {
+      "name": "river",
+      "files": 396,
+      "sha256": "58d68d2233859728c0b20d7ef2de624741a0026f97eefd725f6356814e2d3c50"
+    },
+    "10": {
+      "name": "frozen_ocean",
+      "files": 102,
+      "sha256": "8b6edf32c175ace7be4c7cd818093d3696cfbe8dd8cd7c70f0a1af216d2afdd7"
+    },
+    "11": {
+      "name": "frozen_river",
+      "files": 48,
+      "sha256": "ce1c215906416639550a349cf1fe1ce81110dd0c0fd9bba4dc2c8134bb7dbd60"
+    },
+    "12": {
+      "name": "snowy_tundra",
+      "files": 1254,
+      "sha256": "e7720375fc4145e87bb4e6966c96b73d9b0690c08ad6aff77831fef1007281fc"
+    },
+    "13": {
+      "name": "snowy_mountains",
+      "files": 474,
+      "sha256": "cebf73cac2b2ea8072f6429fb108a25ab347a073a76da88e7e6f6b8f630db851"
+    },
+    "16": {
+      "name": "beach",
+      "files": 426,
+      "sha256": "0b6f5f50578275b99e8cfb8951bb80f524172ff08c0bb59af05b53d68ac7641f"
+    },
+    "17": {
+      "name": "desert_hills",
+      "files": 474,
+      "sha256": "56bec75de2313cfd84b8318e8b2e3546f4a887da4ced94655540262f8551086b"
+    },
+    "18": {
+      "name": "wooded_hills",
+      "files": 708,
+      "sha256": "ba1c2637e20965dcf30956ac6dd7fdfebdeca8a540de936921330892f7ee696a"
+    },
+    "19": {
+      "name": "taiga_hills",
+      "files": 354,
+      "sha256": "64010fb616f7c6b8c3033413d47dbe6afd56627fa7d9e2a2b4299c8d68244811"
+    },
+    "21": {
+      "name": "jungle",
+      "files": 300,
+      "sha256": "f8782210f6298f6b25f94442834028d7e22b80e97ad6f207f6c8d5159d5956c6"
+    },
+    "22": {
+      "name": "jungle_hills",
+      "files": 144,
+      "sha256": "58cbd18f3aa98259ecd2bad794b08de2269716ff92f935d295bc4c3fb069b52d"
+    },
+    "26": {
+      "name": "snowy_beach",
+      "files": 114,
+      "sha256": "daec05e00c6652214e0e29313db3f32d32156a120eff2c32187e22c4f65f0f6b"
+    },
+    "27": {
+      "name": "birch_forest",
+      "files": 816,
+      "sha256": "bd7646fc257f9fd4c147793bb3d8c5021db038db7df088a21b44e65136bde576"
+    },
+    "28": {
+      "name": "birch_forest_hills",
+      "files": 282,
+      "sha256": "ca1f5d765c0fbb2099993b4499795069407a578bc2be18481cb1e3941be95d6b"
+    },
+    "29": {
+      "name": "dark_forest",
+      "files": 810,
+      "sha256": "1e822421182843cb4cbffbbc68656df91be914a68bcbc6bcb51ea155c92d0885"
+    },
+    "30": {
+      "name": "snowy_taiga",
+      "files": 324,
+      "sha256": "423d35b327367f2aeea67ce667ce9f03e26fb2e0bf6390d03f5b04c7f1e37ffe"
+    },
+    "31": {
+      "name": "snowy_taiga_hills",
+      "files": 90,
+      "sha256": "5cd4d81ec92c55b1eb160d645b3a3b3f8bc38c12a8388dc02d88229da351a87a"
+    },
+    "32": {
+      "name": "giant_tree_taiga",
+      "files": 270,
+      "sha256": "f143ba530c487f50c39d600893de6d61482801bdb42727fafe61ced9bd66a15a"
+    },
+    "33": {
+      "name": "giant_tree_taiga_hills",
+      "files": 90,
+      "sha256": "80d1392947d7d3f4ed0aa902808b56e2357115a54a81c06e01077efa2a84750b"
+    },
+    "34": {
+      "name": "wooded_mountains",
+      "files": 612,
+      "sha256": "b3314b3c788d4b00727f3868764a1e11a26338c313a3076981b9a9eaefaa222e"
+    },
+    "35": {
+      "name": "savanna",
+      "files": 1002,
+      "sha256": "cf1218e94de6ffd9e021d61a61cc32b106fa38ad32065431b3308f2eb62d222b"
+    },
+    "36": {
+      "name": "savanna_plateau",
+      "files": 162,
+      "sha256": "33a44f71254c56226a825119c851b863a165fc953886b24394155c2474f28c77"
+    },
+    "37": {
+      "name": "badlands",
+      "files": 108,
+      "sha256": "c166702aacc9d9de01ee6da9f8eef25f7022872c8955d10001a8d9018f5e781c"
+    },
+    "38": {
+      "name": "wooded_badlands_plateau",
+      "files": 60,
+      "sha256": "a97ecdc33884dd16b4e10fa4c9720cb3204b32cd876150ca0ffdefa450837cd6"
+    },
+    "39": {
+      "name": "badlands_plateau",
+      "files": 42,
+      "sha256": "c5eb3ba5fcc7523394c976e106c166979949d8c0fa518ffd14f3af34738aebdc"
+    },
+    "45": {
+      "name": "lukewarm_ocean",
+      "files": 18,
+      "sha256": "e500f34e2eda72a9c93f83d87aa89d62da074f83457be53182ec6021e71eda53"
+    },
+    "129": {
+      "name": "sunflower_plains",
+      "files": 174,
+      "sha256": "f1db84fe4dbaf0e1207c66efdc17315d31ebcc63e4795a7fc4455284de795950"
+    },
+    "130": {
+      "name": "desert_lakes",
+      "files": 84,
+      "sha256": "6656ed3d4d27dbed74103817218225787fa9c7dbb1b6169708eae6758004e022"
+    },
+    "131": {
+      "name": "gravelly_mountains",
+      "files": 78,
+      "sha256": "cf685dc4cff9d5a2e5388d3038d3510e7d32cf2daf5288805cdd421538566194"
+    },
+    "132": {
+      "name": "flower_forest",
+      "files": 126,
+      "sha256": "d2438940b62c73151c71855ed243eb065d339090e8b49b28325166ca48523647"
+    },
+    "133": {
+      "name": "taiga_mountains",
+      "files": 36,
+      "sha256": "f587348c376b993b56d761fe46bc8a7fd9ac90a274228f852423c953d373e254"
+    },
+    "156": {
+      "name": "tall_birch_hills",
+      "files": 24,
+      "sha256": "a57d42b373c008d52acb29ba38737c83aa4eebff32b33f9e8b17e48dcd64c652"
+    },
+    "157": {
+      "name": "dark_forest_hills",
+      "files": 60,
+      "sha256": "48fc9a924fdf213f31d7210b40e26fed149372ed25dac7f46dc2d81097dcdfd9"
+    },
+    "158": {
+      "name": "snowy_taiga_mountains",
+      "files": 6,
+      "sha256": "9c17da0b831a57cd40a9c63b47170ec121ad4e342870c7cb4999f24f6447c311"
+    },
+    "162": {
+      "name": "modified_gravelly_mountains",
+      "files": 108,
+      "sha256": "6cd1e3108c3f545bb199607fe1baa6cced2b8443a725b403fb126ee971fcc425"
+    }
+  }
+}

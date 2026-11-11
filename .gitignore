@@ -13,3 +13,11 @@ __pycache__/
 # Salidas personales; conservar la carpeta en Git mediante un marcador
 /OutPut/*
 !/OutPut/.gitkeep
+
+
+# Dataset reproducible y temporales de su preparación
+/minecraft_biomas/minecraft_biomas/
+/minecraft_biomas/.dataset-tmp-*/
+/minecraft_biomas/.dataset-install.lock/
+desktop.ini
+Thumbs.db

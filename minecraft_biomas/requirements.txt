@@ -1,5 +1,4 @@
-# Conserva tu instalación actual de torch y torchvision con CUDA.
-# Si no están instalados, sigue el README.
+# PyTorch y torchvision CPU/CUDA los instala setup.py con versiones compatibles.
 numpy
 pillow
 matplotlib

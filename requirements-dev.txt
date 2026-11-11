@@ -1,0 +1,2 @@
+# Instalar después de setup.py; incluye las pruebas unitarias y de pytest.
+pytest>=8,<10

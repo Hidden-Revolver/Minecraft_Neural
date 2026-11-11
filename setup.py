@@ -24,6 +24,8 @@ import subprocess
 import sys
 import venv
 
+from scripts.prepare_dataset import DatasetError, prepare_dataset
+
 
 ROOT = Path(__file__).resolve().parent
 PROJECT = ROOT / "minecraft_biomas"
@@ -52,7 +54,7 @@ def env_python() -> Path:
     return ENV_DIR / "bin" / "python"
 
 
-def check_prerequisites() -> None:
+def check_python() -> None:
     if not (sys.version_info[:2] >= (3, 11) and sys.version_info[:2] <= (3, 13)):
         raise SetupError(
             "Se necesita Python de 64 bits, versión 3.11, 3.12 o 3.13 "
@@ -60,6 +62,10 @@ def check_prerequisites() -> None:
         )
     if sys.maxsize <= 2**32:
         raise SetupError("Se necesita una instalación de Python de 64 bits.")
+
+
+def check_prerequisites() -> None:
+    check_python()
     if not APP.is_file() or not REQUIREMENTS.is_file():
         raise SetupError(
             "No encuentro minecraft_biomas/app.py o minecraft_biomas/requirements.txt. "
@@ -178,6 +184,21 @@ def environment_is_healthy(python: Path, cuda: bool) -> bool:
     return False
 
 
+
+def check_environment_tk(python: Path) -> None:
+    # Tkinter depende de bibliotecas del sistema; pip no puede repararlo.
+    result = subprocess.run(
+        [str(python), "-c", "import tkinter"], cwd=ROOT, capture_output=True,
+        text=True, errors="replace", timeout=30, check=False,
+    )
+    if result.returncode:
+        raise SetupError(
+            "Tkinter no funciona dentro de .venv. Comprueba Tcl/Tk en la instalación "
+            "de Python o el paquete python3-tkinter/python3-tk de tu distribución. "
+            "No se descargan dependencias hasta corregirlo. Detalle: " + result.stderr.strip()
+        )
+
+
 def install(python: Path, index: str) -> None:
     call(str(python), "-m", "pip", "install", "--upgrade", "pip")
     if index == "pypi":
@@ -198,8 +219,23 @@ def main() -> int:
                         help="Preparar y verificar sin abrir la interfaz.")
     parser.add_argument("--reinstall", action="store_true",
                         help="Reinstalar/actualizar dependencias en .venv.")
+    dataset = parser.add_mutually_exclusive_group()
+    dataset.add_argument("--skip-dataset", action="store_true",
+                         help="No descargar ni comprobar el dataset; usar datos propios.")
+    dataset.add_argument("--dataset-source", type=Path, metavar="RUTA",
+                         help="Importar un ZIP o carpeta descargada de Kaggle, sin modificar el origen.")
+    parser.add_argument("--dataset-only", action="store_true",
+                        help="Preparar solo el dataset, sin instalar PyTorch ni abrir la app.")
     args = parser.parse_args()
-    check_prerequisites()
+    if args.dataset_only and args.skip_dataset:
+        parser.error("--dataset-only no se puede combinar con --skip-dataset")
+    check_python()
+    if not args.dataset_only:
+        check_prerequisites()
+    if not args.skip_dataset:
+        prepare_dataset(PROJECT / "minecraft_biomas", args.dataset_source, report=say)
+    if args.dataset_only:
+        return 0
     (ROOT / "OutPut").mkdir(parents=True, exist_ok=True)
     index, want_cuda = select_torch_index("cpu" if args.cpu else "cuda" if args.cuda else "auto")
     signature = setup_signature(index)
@@ -211,6 +247,7 @@ def main() -> int:
     else:
         say("[1/3] Reutilizando .venv existente.")
 
+    check_environment_tk(python)
     try:
         previous = json.loads(STATE_FILE.read_text(encoding="utf-8"))
     except (OSError, ValueError):
@@ -242,6 +279,7 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         sys.exit(main())
-    except (SetupError, subprocess.CalledProcessError, OSError) as exc:
+    except (SetupError, DatasetError, subprocess.CalledProcessError, OSError) as exc:
         say(f"\nERROR: {exc}")
         sys.exit(1)
+
