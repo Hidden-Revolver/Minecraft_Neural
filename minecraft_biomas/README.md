@@ -50,13 +50,13 @@ La misma semilla y los mismos archivos/orden de clases reproducen la separación
 
 La pestaña Resultados muestra accuracy y loss de test, tamaños de particiones, época elegida y criterio, F1 macro y balanced accuracy, curvas (y validación si existe), matriz de confusión y precision/recall/F1 por bioma. Las curvas aparecen al terminar; las métricas por época se ven en el registro durante Train.
 
-Cada entrenamiento completado crea una carpeta única en `resultados`, junto a `app.py`:
+Cada entrenamiento completado crea una carpeta única en `OutPut`, en la raíz del repositorio. `resultados` conserva los entrenamientos históricos publicados:
 
 - `biomas_cnn.pth`: pesos, orden/nombres de clases, resolución, configuración, historial y métricas.
 - `resultados.json`: configuración, carpetas originales, historial y resultados.
 - `particiones.csv`: imágenes, etiquetas, hashes y particiones, para auditar la separación.
 
-**Cargar modelo / resultados…** recupera todo desde el `.pth` sin tener las imágenes originales. **Exportar gráficas…** guarda curvas, matriz y diagrama en PNG en la carpeta elegida (los nombres de esos PNG se sobrescriben si exportas de nuevo ahí).
+**Cargar modelo / resultados…** recupera todo desde el `.pth` sin tener las imágenes originales. **Exportar gráficas…** propone `OutPut` y guarda curvas y matriz en PNG, y el resumen de red en TXT, en la carpeta elegida (los nombres de esos PNG se sobrescriben si exportas de nuevo ahí).
 
 También se admite tu `biomas_cnn.pth` de la versión anterior: permite predecir con sus etiquetas originales, pero ese archivo no contiene curvas ni resultados del test. No es posible recuperar métricas ausentes a partir de los pesos. Carga solamente modelos de procedencia conocida; se usa `weights_only=True`.
 

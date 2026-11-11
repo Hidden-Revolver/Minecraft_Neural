@@ -200,6 +200,7 @@ def main() -> int:
                         help="Reinstalar/actualizar dependencias en .venv.")
     args = parser.parse_args()
     check_prerequisites()
+    (ROOT / "OutPut").mkdir(parents=True, exist_ok=True)
     index, want_cuda = select_torch_index("cpu" if args.cpu else "cuda" if args.cuda else "auto")
     signature = setup_signature(index)
 
