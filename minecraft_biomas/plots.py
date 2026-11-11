@@ -1,4 +1,4 @@
-"""Figuras compartidas por la interfaz y el diagrama exportado."""
+"""Curvas y matrices de confusión compartidas por la interfaz y la exportación."""
 from matplotlib.figure import Figure
 import numpy as np
 
@@ -35,23 +35,3 @@ def confusion(metrics):
                         color='white' if matrix[i,j]>matrix.max()/2 else '#14263d')
     return fig
 
-def architecture(size=64, classes=6):
-    fig=Figure(figsize=(10,8),dpi=130,facecolor='#f5f8fc')
-    ax=fig.add_axes([0,0,1,1]); ax.set(xlim=(0,10),ylim=(0,10)); ax.axis('off')
-    ax.text(.5,9.5,'La red de biomas',fontsize=24,weight='bold',color='#162d48')
-    ax.text(.5,9.05,f'CNN desde cero · entrada {size} × {size} · {classes} clases seleccionadas',fontsize=12)
-    blocks=[('Imagen RGB',f'3 × {size} × {size}\nResize + normalización [−1, 1]'),
-            ('Convolución 1 + ReLU + MaxPool',f'3 → 16 canales · kernel 5 × 5 · padding 2\nSalida: 16 × {size//2} × {size//2}'),
-            ('Convolución 2 + ReLU + MaxPool',f'16 → 32 canales · kernel 5 × 5 · padding 2\nSalida: 32 × {size//4} × {size//4}'),
-            ('Flatten + Linear + ReLU',f'{32*(size//4)**2} características → 120 activaciones'),
-            ('Linear de salida',f'120 → {classes} logits (puntuaciones sin normalizar)')]
-    for i,(title,subtitle) in enumerate(blocks):
-        y=8.15-i*1.35
-        ax.text(.65,y,title,fontsize=13,weight='bold',color='#135e70')
-        ax.text(.65,y-.42,subtitle,fontsize=11,va='top',linespacing=1.5)
-        if i<4: ax.annotate('',xy=(5,y-.95),xytext=(5,y-.65),arrowprops={'arrowstyle':'->','color':'#135e70'})
-    ax.text(.65,1.25,'ENTRENAR',fontsize=11,weight='bold',color='#135e70')
-    ax.text(.65,.65,'Logits + etiqueta real → CrossEntropyLoss\nBackpropagation + optimizador elegido',fontsize=11)
-    ax.text(5.6,1.25,'CLASIFICAR UNA IMAGEN',fontsize=11,weight='bold',color='#135e70')
-    ax.text(5.6,.65,'Logits → Softmax → porcentaje por bioma\nLos porcentajes suman 100 %',fontsize=11)
-    return fig

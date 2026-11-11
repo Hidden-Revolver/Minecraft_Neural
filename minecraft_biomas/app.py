@@ -39,7 +39,7 @@ class App(tk.Tk):
         self.net_tab=self.tab('5 · Red neuronal')
         self.build_data(); self.build_results(); self.build_predict(); self.refresh_selection()
         self.build_architectures()
-        self.status=tk.StringVar(value='Selecciona carpetas locales para comenzar. No se descarga ningún dataset.')
+        self.status=tk.StringVar(value='Selecciona carpetas locales; el dataset preparado por setup está disponible en Explorar carpeta raíz.')
         ttk.Label(self,textvariable=self.status,padding=8).pack(fill='x')
         self.poll_job=self.after(100,self.poll); self.protocol('WM_DELETE_WINDOW',self.close)
 
@@ -133,7 +133,7 @@ class App(tk.Tk):
         self.button(bar,'Importar JSON',self.import_architecture)
         self.button(bar,'Exportar JSON',self.export_architecture)
         self.button(bar,'Validar / ver resumen',self.validate_editor)
-        ttk.Label(self.arch_tab,text='Edita las capas en orden. Las entradas se calculan automáticamente; "classes" adapta las salidas a los biomas.\nEl JSON del editor se utiliza al iniciar el siguiente entrenamiento. Consulta ARQUITECTURAS.md para el formato.',wraplength=1050).pack(anchor='w',pady=12)
+        ttk.Label(self.arch_tab,text='Edita las capas en orden. Las entradas se calculan automáticamente; "classes" adapta las salidas a los biomas.\nEl JSON del editor se utiliza al iniciar el siguiente entrenamiento. Consulta docs/ARQUITECTURAS.md para el formato.',wraplength=1050).pack(anchor='w',pady=12)
         self.arch_editor=ScrolledText(self.arch_tab,font=('Consolas',11),wrap='none',undo=True)
         self.arch_editor.pack(fill='both',expand=True); self.controls.append((self.arch_editor,'normal'))
         self.arch_editor.insert('1.0',json.dumps(ORIGINAL,ensure_ascii=False,indent=2))
@@ -265,7 +265,8 @@ class App(tk.Tk):
         path=filedialog.askdirectory(title='Selecciona una carpeta que represente UN bioma')
         if path: self.launch(lambda:self.scan([path]),'folders')
     def add_root(self):
-        path=filedialog.askdirectory(title='Selecciona la carpeta que contiene las carpetas de biomas')
+        path=filedialog.askdirectory(title='Selecciona la carpeta que contiene las carpetas de biomas',
+                                     initialdir=str(BASE/'minecraft_biomas') if (BASE/'minecraft_biomas').is_dir() else str(BASE))
         if path:
             folders=sorted(p for p in Path(path).iterdir() if p.is_dir() and not p.name.startswith('.'))
             self.launch(lambda:self.scan(folders,selected=False),'folders')
@@ -381,3 +382,4 @@ class App(tk.Tk):
 
 if __name__=='__main__':
     App().mainloop()
+
