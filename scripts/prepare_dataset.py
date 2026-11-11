@@ -83,12 +83,15 @@ def extract_archive(archive, destination):
                 raise DatasetError('El ZIP descomprimido supera 1 GiB.')
             seen = set()
             for info in members:
-                path = PurePosixPath(info.filename)
+                # ZipInfo normaliza separadores en Windows y trunca en NUL.
+                # Validar el nombre original evita diferencias entre plataformas.
+                original = info.orig_filename
+                path = PurePosixPath(original)
                 mode = info.external_attr >> 16
-                if (path.is_absolute() or '..' in path.parts or '\\' in info.filename
-                        or ':' in info.filename or not path.parts
+                if (path.is_absolute() or '..' in path.parts or '\\' in original
+                        or ':' in original or '\x00' in original or not path.parts
                         or stat.S_ISLNK(mode)):
-                    raise DatasetError(f'Ruta insegura en ZIP: {info.filename}')
+                    raise DatasetError(f'Ruta insegura en ZIP: {original!r}')
                 key = str(path).casefold()
                 if key in seen:
                     raise DatasetError(f'Ruta duplicada en ZIP: {info.filename}')
