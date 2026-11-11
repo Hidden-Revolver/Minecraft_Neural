@@ -75,10 +75,11 @@ def check_prerequisites() -> None:
         import tkinter  # noqa: F401; Tk no se instala mediante pip.
     except ImportError as exc:
         package_hint = (
-            "En Fedora: sudo dnf install python3-tkinter. "
-            "En Ubuntu/Debian: sudo apt install python3-tk."
+            "En Fedora: \"sudo dnf install python3-tkinter\"." # Hidden-Revolver: Quizá en estas lineas(78,79,80) venga bien un salto de linea cuando se imprima por pantalla para claridad.
+            "En Ubuntu/Debian: \"sudo apt install python3-tk\"."
+            "En Arch Linux: \"sudo pacman -S tk tcl\"." # Hidden-Revolver: De regalo
             if sys.platform.startswith("linux")
-            else "Reinstala Python desde python.org incluyendo Tcl/Tk y IDLE."
+            else "Reinstala Python desde python.org incluyendo \"Tcl/Tk\" y \"IDLE\" en las opciones del instalador."
         )
         raise SetupError("Falta Tkinter. " + package_hint) from exc
 
@@ -184,7 +185,6 @@ def environment_is_healthy(python: Path, cuda: bool) -> bool:
     return False
 
 
-
 def check_environment_tk(python: Path) -> None:
     # Tkinter depende de bibliotecas del sistema; pip no puede repararlo.
     result = subprocess.run(
@@ -228,7 +228,7 @@ def main() -> int:
                         help="Preparar solo el dataset, sin instalar PyTorch ni abrir la app.")
     args = parser.parse_args()
     if args.dataset_only and args.skip_dataset:
-        parser.error("--dataset-only no se puede combinar con --skip-dataset")
+        parser.error("--dataset-only no se puede combinar con --skip-dataset") # Hidden-Revolver: Estaría gracioso que en ese caso simplemente no hiciese nada (Este comentario no se debe tomar en serio).
     check_python()
     if not args.dataset_only:
         check_prerequisites()
