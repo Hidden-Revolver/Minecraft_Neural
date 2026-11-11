@@ -1,0 +1,75 @@
+{
+  "name": "CNN compacta · 3 convoluciones",
+  "layers": [
+    {
+      "type": "Conv2d",
+      "out_channels": 16,
+      "kernel_size": 3,
+      "padding": 1
+    },
+    {
+      "type": "BatchNorm2d"
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "MaxPool2d",
+      "kernel_size": 2
+    },
+    {
+      "type": "Conv2d",
+      "out_channels": 32,
+      "kernel_size": 3,
+      "padding": 1
+    },
+    {
+      "type": "BatchNorm2d"
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "MaxPool2d",
+      "kernel_size": 2
+    },
+    {
+      "type": "Conv2d",
+      "out_channels": 64,
+      "kernel_size": 3,
+      "padding": 1
+    },
+    {
+      "type": "BatchNorm2d"
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "MaxPool2d",
+      "kernel_size": 2
+    },
+    {
+      "type": "AdaptiveAvgPool2d",
+      "output_size": 2
+    },
+    {
+      "type": "Flatten"
+    },
+    {
+      "type": "Linear",
+      "out_features": 128
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "Dropout",
+      "p": 0.25
+    },
+    {
+      "type": "Linear",
+      "out_features": "classes"
+    }
+  ]
+}

@@ -1,0 +1,248 @@
+[
+  {
+    "name": "badlands",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\badlands",
+    "use": false,
+    "count": 108
+  },
+  {
+    "name": "badlands_plateau",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\badlands_plateau",
+    "use": false,
+    "count": 42
+  },
+  {
+    "name": "beach",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\beach",
+    "use": false,
+    "count": 426
+  },
+  {
+    "name": "birch_forest",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\birch_forest",
+    "use": true,
+    "count": 816
+  },
+  {
+    "name": "birch_forest_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\birch_forest_hills",
+    "use": false,
+    "count": 282
+  },
+  {
+    "name": "dark_forest",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\dark_forest",
+    "use": false,
+    "count": 810
+  },
+  {
+    "name": "dark_forest_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\dark_forest_hills",
+    "use": false,
+    "count": 60
+  },
+  {
+    "name": "desert",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\desert",
+    "use": true,
+    "count": 1530
+  },
+  {
+    "name": "desert_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\desert_hills",
+    "use": false,
+    "count": 474
+  },
+  {
+    "name": "desert_lakes",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\desert_lakes",
+    "use": false,
+    "count": 84
+  },
+  {
+    "name": "flower_forest",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\flower_forest",
+    "use": false,
+    "count": 126
+  },
+  {
+    "name": "forest",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\forest",
+    "use": true,
+    "count": 2724
+  },
+  {
+    "name": "frozen_ocean",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\frozen_ocean",
+    "use": false,
+    "count": 102
+  },
+  {
+    "name": "frozen_river",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\frozen_river",
+    "use": false,
+    "count": 48
+  },
+  {
+    "name": "giant_tree_taiga",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\giant_tree_taiga",
+    "use": false,
+    "count": 270
+  },
+  {
+    "name": "giant_tree_taiga_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\giant_tree_taiga_hills",
+    "use": false,
+    "count": 90
+  },
+  {
+    "name": "gravelly_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\gravelly_mountains",
+    "use": false,
+    "count": 78
+  },
+  {
+    "name": "jungle",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\jungle",
+    "use": false,
+    "count": 300
+  },
+  {
+    "name": "jungle_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\jungle_hills",
+    "use": false,
+    "count": 144
+  },
+  {
+    "name": "lukewarm_ocean",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\lukewarm_ocean",
+    "use": false,
+    "count": 18
+  },
+  {
+    "name": "modified_gravelly_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\modified_gravelly_mountains",
+    "use": false,
+    "count": 108
+  },
+  {
+    "name": "mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\mountains",
+    "use": true,
+    "count": 2466
+  },
+  {
+    "name": "Plains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\Plains",
+    "use": true,
+    "count": 3012
+  },
+  {
+    "name": "river",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\river",
+    "use": false,
+    "count": 396
+  },
+  {
+    "name": "savanna",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\savanna",
+    "use": true,
+    "count": 1002
+  },
+  {
+    "name": "savanna_plateau",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\savanna_plateau",
+    "use": false,
+    "count": 162
+  },
+  {
+    "name": "snowy_beach",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_beach",
+    "use": false,
+    "count": 114
+  },
+  {
+    "name": "snowy_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_mountains",
+    "use": false,
+    "count": 474
+  },
+  {
+    "name": "snowy_taiga",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_taiga",
+    "use": false,
+    "count": 324
+  },
+  {
+    "name": "snowy_taiga_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_taiga_hills",
+    "use": false,
+    "count": 90
+  },
+  {
+    "name": "snowy_taiga_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_taiga_mountains",
+    "use": false,
+    "count": 6
+  },
+  {
+    "name": "snowy_tundra",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\snowy_tundra",
+    "use": true,
+    "count": 1254
+  },
+  {
+    "name": "sunflower_plains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\sunflower_plains",
+    "use": false,
+    "count": 174
+  },
+  {
+    "name": "swamp",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\swamp",
+    "use": false,
+    "count": 665
+  },
+  {
+    "name": "taiga",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\taiga",
+    "use": true,
+    "count": 1596
+  },
+  {
+    "name": "taiga_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\taiga_hills",
+    "use": false,
+    "count": 354
+  },
+  {
+    "name": "taiga_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\taiga_mountains",
+    "use": false,
+    "count": 36
+  },
+  {
+    "name": "tall_birch_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\tall_birch_hills",
+    "use": false,
+    "count": 24
+  },
+  {
+    "name": "wooded_badlands_plateau",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\wooded_badlands_plateau",
+    "use": false,
+    "count": 60
+  },
+  {
+    "name": "wooded_hills",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\wooded_hills",
+    "use": false,
+    "count": 708
+  },
+  {
+    "name": "wooded_mountains",
+    "folder": "C:\\Users\\USUARIO\\Downloads\\preprocessed_data\\wooded_mountains",
+    "use": false,
+    "count": 612
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "name": "CNN original",
+  "layers": [
+    {
+      "type": "Conv2d",
+      "out_channels": 16,
+      "kernel_size": 5,
+      "padding": 2
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "MaxPool2d",
+      "kernel_size": 2
+    },
+    {
+      "type": "Conv2d",
+      "out_channels": 32,
+      "kernel_size": 5,
+      "padding": 2
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "MaxPool2d",
+      "kernel_size": 2
+    },
+    {
+      "type": "Flatten"
+    },
+    {
+      "type": "Linear",
+      "out_features": 120
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "Linear",
+      "out_features": "classes"
+    }
+  ]
+}

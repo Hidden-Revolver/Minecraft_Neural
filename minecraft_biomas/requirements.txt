@@ -1,0 +1,6 @@
+# Conserva tu instalación actual de torch y torchvision con CUDA.
+# Si no están instalados, sigue el README.
+numpy
+pillow
+matplotlib
+scikit-learn
